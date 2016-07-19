@@ -11,17 +11,17 @@
         android:layout_centerVertical="true"
         android:scaleType="fitCenter"
         android:src = "@mipmap/shop_image1"
-        android:paddingLeft="@dimen/list_image_padding_left"/>
+        android:paddingLeft="@dimen/list_image_padding_side"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="275dp"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/list_text_padding_left"
         android:textSize="@dimen/list_title_textsize"
         android:paddingTop="@dimen/list_title_padding_top"
         android:textColor="@color/off_black"
         android:id="@+id/name"
-        android:text="Title"
+        android:text="TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle"
         />
 
     <TextView
@@ -52,5 +52,15 @@
         android:text="type"
         android:layout_toRightOf="@id/type_img"
         android:paddingBottom="@dimen/list_text_padding_bottom"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/closed"
+        android:paddingRight="@dimen/list_image_padding_side"
+        android:textSize="@dimen/list_title_textsize"
+        android:text="CLOSED"/>
 
 </RelativeLayout>

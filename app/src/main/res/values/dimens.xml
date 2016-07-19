@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="list_height">88dp</dimen>
-    <dimen name="list_image_padding_left">16dp</dimen>
+    <dimen name="list_image_padding_side">16dp</dimen>
     <dimen name="list_image_size">84dp</dimen>
     <dimen name="list_text_padding_left">92dp</dimen>
     <dimen name="list_text_padding_bottom">20dp</dimen>

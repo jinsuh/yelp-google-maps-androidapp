@@ -1,17 +1,22 @@
 package com.bellychallenge;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import java.io.ByteArrayOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -27,6 +32,8 @@ public class BusinessListAdapter extends RecyclerView.Adapter<BusinessListAdapte
         public TextView title;
         public TextView distance;
         public TextView type;
+        public TextView closed;
+        public ImageView image;
 
         private String url;
         private final Context context;
@@ -37,6 +44,8 @@ public class BusinessListAdapter extends RecyclerView.Adapter<BusinessListAdapte
             title = (TextView) v.findViewById(R.id.name);
             distance = (TextView) v.findViewById(R.id.distance);
             type = (TextView) v.findViewById(R.id.type);
+            closed = (TextView) v.findViewById(R.id.closed);
+            image = (ImageView) v.findViewById(R.id.image);
             v.setOnClickListener(this);
         }
 
@@ -50,10 +59,15 @@ public class BusinessListAdapter extends RecyclerView.Adapter<BusinessListAdapte
         public void setUrl(String url) {
             this.url = url;
         }
+
+        public void setImage(byte[] imageArr) {
+            Bitmap bitmap = BitmapFactory.decodeByteArray(imageArr, 0, imageArr.length);
+            image.setImageBitmap(bitmap);
+        }
     }
 
     public BusinessListAdapter(ArrayList<Parcelable> bParcelables) {
-        dataset = bParcelables;
+        this.dataset = bParcelables;
     }
 
     @Override
@@ -72,6 +86,19 @@ public class BusinessListAdapter extends RecyclerView.Adapter<BusinessListAdapte
         holder.distance.setText(distanceText);
         holder.type.setText(bp.getType());
         holder.setUrl(bp.getUrl());
+        holder.setImage(bp.getImageArr());
+        setOpenClosed(holder.closed, bp.getClosed());
+    }
+
+    private void setOpenClosed(TextView closed, boolean isClosed) {
+        if (isClosed) {
+            closed.setText(closed.getContext().getString(R.string.closed_sign));
+            closed.setTextColor(ContextCompat.getColor(closed.getContext(), R.color.closed_gray));
+        }
+        else {
+            closed.setText(closed.getContext().getString(R.string.open_sign));
+            closed.setTextColor(ContextCompat.getColor(closed.getContext(), R.color.green));
+        }
     }
 
     private String formatDistance(double dist) {

@@ -1,6 +1,9 @@
 package com.bellychallenge;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +29,7 @@ public class DisplayList extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_displaylist);
         Intent intent = getIntent();
-
+        boolean needToStore = intent.getBooleanExtra(MainActivity.EXTRA_STORE, false);
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
 
@@ -35,7 +38,8 @@ public class DisplayList extends AppCompatActivity{
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this));
 
-        adapter = new BusinessListAdapter(intent.getParcelableArrayListExtra(MainActivity.EXTRA_LIST));
+        ArrayList<Parcelable> bps = intent.getParcelableArrayListExtra(MainActivity.EXTRA_LIST);
+        adapter = new BusinessListAdapter(bps);
         recyclerView.setAdapter(adapter);
     }
 

@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">BellyChallenge</string>
+    <string name="app_name">Food Search</string>
     <string name="main_screen_button">Find Restaurants Nearby!</string>
+    <string name="open_sign">OPEN</string>
+    <string name="closed_sign">CLOSED</string>
+    <string name="no_connection_first">Previous location not found. Please connect to the internet and GPS to search.</string>
+    <string name="loading">Please wait...</string>
 </resources>
